@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent 'circleci/openjdk:10-jdk-node'
     tools {
         jdk 'jdk10'
         maven 'M3'
