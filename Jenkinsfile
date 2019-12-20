@@ -15,20 +15,18 @@ pipeline {
                 sh 'mvn install'
             }
         }
-        stage('QA') {
-          stage('Sonarqube') {
-            environment {
-              scannerHome = tool 'SonarQubeScanner'
-            }
-            steps {
-              withSonarQubeEnv('sonarqube') {
-                sh "${scannerHome}/bin/sonar-scanner"
+            stage('Sonarqube') {
+              environment {
+                scannerHome = tool 'SonarQubeScanner'
               }
-              timeout(time: 30, unit: 'MINUTES') {
-                waitForQualityGate abortPipeline: true
+              steps {
+                withSonarQubeEnv('sonarqube') {
+                  sh "${scannerHome}/bin/sonar-scanner"
+                }
+                timeout(time: 30, unit: 'MINUTES') {
+                  waitForQualityGate abortPipeline: true
+                }
               }
             }
-          }
-        }
     }
 }
