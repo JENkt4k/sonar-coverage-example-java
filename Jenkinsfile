@@ -1,5 +1,9 @@
 pipeline {
-    agent 'circleci/openjdk:10-jdk-node'
+    agent {
+        docker {
+            image 'circleci/openjdk:10-jdk-node'
+        }
+    }
     tools {
         jdk 'jdk10'
         maven 'M3'
