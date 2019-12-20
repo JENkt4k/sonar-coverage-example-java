@@ -4,15 +4,6 @@ pipeline {
             image 'circleci/openjdk:10-jdk-node'
         }
     }
-    tools {
-        jdk 'jdk10'
-        maven 'M3'
-    }
-
-    environment {
-        JAVA_HOME = "${jdk}"
-    }
-
     stages {
         stage('Prepare') {
             steps {
